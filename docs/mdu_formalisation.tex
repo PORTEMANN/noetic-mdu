@@ -1,0 +1,240 @@
+% ============================================================
+%  LA MACHINE DYNAMIQUE UNIFIÉE (MDU) — FORMALISATION
+%  De l'infiniment petit à l'infiniment grand
+%  Compiler avec pdfLaTeX (défaut Overleaf) — dépendances standard
+%  ============================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{margin=2.3cm}
+\usepackage{booktabs,array}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=black, urlcolor=blue!50!black}
+
+% Statuts épistémiques (charte de l'écosystème) :
+% etabli -> \SET ; modele -> \SMOD ; conjecture -> \SCONJ ; refute -> \SREF
+\newcommand{\SET}{\ensuremath{\blacklozenge}}
+\newcommand{\SMOD}{\ensuremath{\lozenge}}
+\newcommand{\SCONJ}{\ensuremath{\circ}}
+\newcommand{\SREF}{\ensuremath{\times}}
+\newcommand{\sent}{S_{\mathrm{ent}}}
+\newcommand{\Anu}{\mathrm{ANU}}
+
+\title{\textbf{La Machine Dynamique Unifiée (MDU)}\\
+\large Formalisation : de l'infiniment petit à l'infiniment grand\\
+\normalsize et son positionnement comme entrée de la Machine Noétique (préfiltre / classification, face à l'ASH)}
+\author{D'après les travaux de Patrice Portemann --- formalisation compilée le 07/09/2026\\
+(arts. 11875, 11566, 11685, 12136, 12327 ; vérifications V1--V8 du même jour)}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Statuts et honnêteté}
+Chaque bloc porte son statut selon la charte : \SET{} établi (calcul vérifié ou résultat standard) ; \SMOD{} modèle structuré ; \SCONJ{} hypothèse/piste (défaut pour tout ce qui est propre à la physique noétique) ; \SREF{} réfuté tel que publié. L'état des preuves de chaque propriété MDU est en annexe A.
+
+\tableofcontents
+\newpage
+
+\section{Définition formelle}
+
+\begin{quote}
+\textbf{Définition (MDU, art. 11875).} Une \emph{Machine Dynamique Unifiée} est un système computationnel $\mathcal{M} = (\mathcal{E}, \mathcal{D}, \mathcal{S}, \mathcal{M}_{\mathrm{slow}}, \mathcal{O})$ où :
+\end{quote}
+
+\begin{enumerate}
+\item \textbf{Équation maîtresse} : la dynamique est engendrée par une équation géométrique unique $\mathcal{E}$ à dynamique physique unifiée (\S\ref{sec:maitresse}) ;
+\item \textbf{Incarnation} : $\mathcal{M}$ admet une incarnation computationnelle directe $\mathcal{D}$ (automate spectral, schéma discret ou opérateur itératif ; \S\ref{sec:discret}) ;
+\item \textbf{Multi-échelle} : $\mathcal{M}$ opère simultanément sur plusieurs échelles via une décomposition spectrale $\mathcal{S}$ en sept plans (\S\ref{sec:plans}) ;
+\item \textbf{Encodage géométrique} : l'information est encodée dans la géométrie interne des opérateurs (spectres, classes de torsion) ;
+\item \textbf{Mémoire lente} : $\mathcal{M}_{\mathrm{slow}}$ modifie progressivement les paramètres internes (rétroaction entropique ; \S\ref{sec:memoire}) ;
+\item \textbf{Stabilité énergétique} : l'énergie discrète décroît ou reste bornée (condition \eqref{eq:stab}) ;
+\item \textbf{Unification} : $\mathcal{M}$ simule des phénomènes physiques, informationnels et cognitifs dans le cadre unique $\mathcal{O}$ (la chaîne d'échelles, \S\ref{sec:echelles}).
+\end{enumerate}
+
+\section{L'équation maîtresse}
+\label{sec:maitresse}
+
+Forme V4.0 (art. 11875) \SCONJ :
+\begin{equation}
+\boxed{\ \frac{D\mathbf{v}}{Dt} = -\nabla P_c + \mathbf{v}\times\mathbf{T} + \nu(\sent)\,\Delta \mathbf{v}\ }
+\label{eq:maitresse}
+\end{equation}
+
+avec le dictionnaire des limites (affirmé dans les articles ; la dérivation publique reste à produire) :
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Terme & Objet & Limite revendiquée & Statut \\
+\midrule
+$-\nabla P_c$ & pression du vide & gravité (Einstein--Cartan) & \SCONJ \\
+$\mathbf{v}\times\mathbf{T}$ & torsion (spin) & mécanique quantique (Madelung) & \SCONJ \\
+$\nu(\sent)\Delta\mathbf{v}$ & viscosité entropique & dissipation (Navier--Stokes) & \SCONJ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Forme CTFT avec mémoire intégrale (art. 12136 ; dérivée fractionnaire d'Atangana--Baleanu, noyau de Mittag-Leffler non singulier) \SCONJ{} (mathématiques AB : \SET) :
+\begin{equation}
+\rho_\kappa\, {}^{AB}D_t^{\alpha} u = -\nabla P_\zeta + \mathbf{u}\times\mathbf{T} + \nabla\big(\eta(S)\,\nabla u\big),
+\qquad \alpha\in(0,1)
+\label{eq:ctft}
+\end{equation}
+où $P_\zeta$ est indexé sur $\zeta$ de Riemann ($\zeta(-1) = -1/12$, tension du vide), $\mathbf{T}$ la torsion générant la matière structurée, et $\eta(S)$ la viscosité variable --- la « signature de la conscience » dans le modèle : la résistance au cisaillement dépend de la charge informationnelle.
+
+\section{La décomposition spectrale en sept plans}
+\label{sec:plans}
+
+L'espace d'état est filtré en sept sous-espaces (arts. 10226, 11566, 11875) \SCONJ :
+\begin{equation}
+\mathcal{H}_{\mathrm{biphasique}} = \mathcal{H}_{\mathrm{phys}}\otimes\mathcal{H}_{\mathrm{noét}},
+\qquad \dim\mathcal{H}_{\mathrm{noét}} = 7 ;
+\qquad
+|\Psi\rangle = \sum_{n,k} c_{nk}\,|\psi_n^{(\mathrm{phys})}\rangle\otimes|\varphi_k^{(\mathrm{noét})}\rangle
+\end{equation}
+\begin{equation}
+|\Psi_{\mathrm{global}}\rangle = |\psi_{E1}\rangle\otimes|\psi_{E2}\rangle\otimes\cdots\otimes|\psi_{E7}\rangle,
+\qquad
+D_{\mathrm{GLOBAL}} = (D_{\mathrm{phys}}\otimes\mathbb{1}_{\mathrm{noet}}) + \sum_{k=1}^{7}(\Gamma_k\otimes A_k)
+\end{equation}
+
+Lecture organisationnelle des plans (art. 11566) : E1 synchronisation, E2 polarisation/cohérence, E3 asymétrie, E4 filtrage (interface), E5 tension, E6 cohésion, E7 modularité --- avec la boucle d'adaptation :
+\begin{equation}
+\text{détection }(E5) \to \text{reconfiguration }(E7) \to \text{filtrage }(E4) \to \text{synchronisation }(E1) \to \text{cohésion }(E6) \to \text{retour}
+\end{equation}
+
+\section{L'incarnation discrète (automate spectral)}
+\label{sec:discret}
+
+Discrétisation de \eqref{eq:maitresse} (art. 11875) \SCONJ{} (mécanique : \SMOD{} --- le pipeline tourne dans les documents de 12/2025) :
+\begin{equation}
+X_{t+1} = X_t + \eta\Big(LX_t + MF(X_t) + D(\sent)\Big)
+\label{eq:automate}
+\end{equation}
+\begin{equation}
+x_i(t+1) = x_i(t) + \nu\,\Delta x_i(t) + \sum_{j} M_{ij} F_j(x_j(t)) + D_i(\sent(t))
+\label{eq:automate2}
+\end{equation}
+avec la correspondance continu $\leftrightarrow$ discret :
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Terme continu & Pendant discret \\
+\midrule
+$-\nabla P_c$ & couplage $E_1 \to E_5$ \\
+$\mathbf{v}\times\mathbf{T}$ & matrice $M_{ij}$ antisymétrique \\
+$\nu\Delta\mathbf{v}$ & terme $\nu\Delta x_i$ \\
+$\sent$ & rétroaction $D_i(S)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Condition de stabilité énergétique (propriété 6) \SCONJ{} (preuve publique à produire) :
+\begin{equation}
+\rho\big(I + \eta A_{\mathrm{lin}}\big) < 1
+\label{eq:stab}
+\end{equation}
+
+\section{La mémoire lente}
+\label{sec:memoire}
+
+Le paramètre d'ordre informationnel se rappelle (arts. 11875, 12136) \SCONJ :
+\begin{equation}
+\sent = \ln N \ ;\qquad \text{rétroaction } D_i(S) \text{ dans \eqref{eq:automate2}} \ ;\qquad {}^{AB}D_t^{\alpha}\ \text{(mémoire intégrale non markovienne) dans \eqref{eq:ctft}}
+\end{equation}
+
+\section{La chaîne d'échelles et les adaptateurs}
+\label{sec:echelles}
+
+Le passage micro $\to$ macro est gouverné par le nombre de Reynolds noétique $Re_N$ (art. 12136 : MICRO $Re_N\gg1$ ; MÉSO $Re_N\sim1$ ; MACRO $Re_N\ll1$). À chaque échelle, un adaptateur branché sur la même ossature (7 plans, $M_{ij}$, invariants) :
+
+\begin{center}
+\small
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Échelle & Adaptateur & Forme-clé & État au 07/09/2026 & Statut \\
+\midrule
+Atome/noyau & modèle $k$ & $E_l/A = -0{,}185\,k(Z,N) + 8{,}090 + \delta$ & EMA 0,438 MeV (12 noyaux) & \SMOD \\
+Tableau & gamme & moyenne géométrique des $k(i)$ : $-0{,}23\,\%$ de $2^{1/12}$ & vérifié (V2) & \SET\ (calcul) \\
+Tableau & pont & $N_{\Anu}/18 \approx A$ : RMS 1,4\,\% & vérifié (V1) & \SET/\SCONJ \\
+Matériau & espace latent & Noeticon-1 : 966 prédit / 921 GPa mesuré (4,7\,\%) & mesuré & \SMOD \\
+Vivant & taxonomie & $E_{\mathrm{noet}} \propto f(N_{bp}, R_{nc})$ ; seuil $E_4$ : $3\times10^{28}$ $\Anu$/m$^3$ & cohérent par construction & \SCONJ \\
+Cerveau & système 7 plans & $28$ paramètres ; AUC 0,86 (8 datasets, 4782 sujets) & publié, non rejoué ici & \SMOD \\
+Galaxie & $k(Z,N)$ + TOV & réseaux r-process, [Fe/H] & cohérent, non confronté & \SCONJ \\
+Univers & Koïlon causal & $c_s \le c \Rightarrow Z_{\max}\approx179$ ; $N_{\mathrm{modes}} = 12\log_2(1/\alpha_K) = 120$ & identités exactes ; physique \SCONJ & \SMOD/\SCONJ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Invariants et observables}
+
+Le tableau de bord de la machine (arts. 11566, 11110, 12136) \SCONJ :
+\begin{equation}
+\sent = \ln N
+\ ;\qquad
+F_j = e^{-\beta_j S_j}
+\ ;\qquad
+I_j^{\mathrm{eff}} = I_{j,0}\,e^{-\alpha_j S_j}
+\ ;\qquad
+Q_{\mathrm{ent}} = e^{-\sent}
+\ ;\qquad
+\rho_\Lambda^{\mathrm{eff}} = e^{-\sent}\Lambda^4
+\end{equation}
+et le triplet de résidus (certification algébrique) :
+\begin{equation}
+R = (R_\zeta,\ R_{\mathrm{top}},\ R_{\mathrm{dyn}}),
+\qquad R_{\mathrm{dyn}} \to 0 \iff \mathrm{Re}(\lambda_{\mathrm{pôle}}) \le 0
+\end{equation}
+
+\section{La MDU comme entrée de la Machine Noétique (face à l'ASH)}
+\label{sec:entree}
+
+\textbf{Constat d'architecture.} L'écosystème possède déjà une entrée niveau signal : l'\textbf{ASH} (banque de signaux ; toute série (temps, valeur) $\to$ signature figée au contrat \texttt{ash-signature/0.1} $\to$ verdict \texttt{ash-verdict/0.1} : CONFORME / DIVERGENT / EXPLORATION / HORS-CONTRAT ; statuts $T > C > E > H$ ; empreintes SHA-256 à tous les étages). \SET{} (existant, en ligne)
+
+\textbf{La MDU, elle, ne traite pas des signaux mais des objets structurés} (un atome, un composé, un caryotype, un état cognitif, une galaxie). Sa fonction naturelle d'entrée est donc \textbf{amont} de l'ASH : le \emph{préfiltre / classifieur de problèmes}. Contrat proposé (à figer si l'entrée est créée) \SCONJ :
+
+\begin{enumerate}
+\item \textbf{Entrée} : un problème/objet structuré (propriétés mesurées, contexte déclaré) ;
+\item \textbf{Classification MDU} : détection de l'échelle (MICRO/MÉSO/MACRO via $Re_N$), du domaine, des plans dominants ; choix de l'adaptateur (\S\ref{sec:echelles}) ;
+\item \textbf{Prétraitement} : l'objet est réduit à ses signatures : séries temporelles (vers l'ASH) ou vecteurs d'invariants (vers les campagnes) ;
+\item \textbf{Sortie} : une \emph{fiche pré-enregistrée} (objet / protocole / falsifieur / prédiction datée --- le format CAMPAIGNS.md) routée vers la couche verdict : ASH pour les signaux, corpus P pour les calculs, registre pour les valeurs.
+\end{enumerate}
+
+\begin{equation}
+\text{objet} \xrightarrow{\ \mathrm{MDU}\ } \underbrace{\text{échelle, domaine, plans dominants, adaptateur}}_{\text{préfiltre / classification}}
+\xrightarrow{\ \mathrm{fiche}\ }
+\begin{cases}
+\text{ASH} & \text{(signaux)}\\
+\text{campagnes P} & \text{(calculs)}\\
+\text{registre} & \text{(valeurs)}
+\end{cases}
+\end{equation}
+
+\textbf{Recommandation.} Oui : la MDU peut devenir une nouvelle entrée --- un dépôt du type \texttt{noetic-mdu} jouant le rôle de \textbf{préfiltre et classifieur} en amont de l'ASH (qui reste l'analyseur de signaux) et des campagnes (qui restent le banc de verdicts). Les deux entrées sont complémentaires : l'ASH identifie l'inconnu \emph{parmi les signaux} ; la MDU identifie l'échelle et le domaine \emph{du problème}, et produit la fiche qui rend le verdict possible.
+
+\appendix
+\section{État des preuves par propriété MDU (au 07/09/2026)}
+
+\begin{center}
+\begin{tabular}{@{}cll@{}}
+\toprule
+\# & Propriété & État de la preuve \\
+\midrule
+1 & Équation maîtresse & écrite (deux formes) ; limites affirmées, dérivation publique à produire \\
+2 & Incarnation en automate & \textbf{démontrée} (pipeline en œuvre : atomes, matériaux, cerveau) \\
+3 & Multi-échelle spectral & \textbf{démontrée comme portabilité} (même squelette aux 5 échelles) \\
+4 & Encodage géométrique & démontrée en pratique (signatures spectrales) \\
+5 & Mémoire lente & documentée ; non mesurée sur cas réel \\
+6 & Stabilité énergétique & affirmée ; preuve à publier \\
+7 & Unification phys./info./cognitif & partielle (cognitif validé ; physique : Noeticon-1) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Verdict de synthèse.} La MDU existe comme \emph{architecture} (propriétés 2--4) ; elle l'aura comme \emph{classe physique} quand 1, 5, 6 auront leurs preuves publiques et le corridor de falsification ses mesures (Bell $S = 3{,}23 \pm 0{,}05$ ; $\Delta B = 0{,}5$ mT ; $\Delta V_m = -5$ mV ; Noeticon-2 ; pics de fission $A = 63/110/126/173$).
+
+\end{document}
