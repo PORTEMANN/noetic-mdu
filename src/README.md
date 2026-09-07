@@ -15,6 +15,8 @@ src/mdu/
     c_delta.py           — deltaANU (DIVERGENT : tendance vraie, loi fausse)
     c_ilots.py           — îlots 18k+m (CONFORME sous coupure k ≤ 9)
 src/compare.py           — les trois versions sur le même signal
+src/noetic/              — le pipeline NoeticMachine (référence reconstruite, F10 — 07/09/2026) :
+                           machine.py (API documentée) + demo_table.py
 data/anu_table_2.csv     — la table officielle (copie de koilon-scale-e8)
 ```
 
@@ -27,6 +29,7 @@ python -m mdu.campagnes.c_gamme                # depuis src/
 python -m mdu.campagnes.c_zcalc
 python -m mdu.campagnes.c_delta
 python -m mdu.campagnes.c_ilots
+PYTHONPATH=src python src/noetic/demo_table.py   # la machine sur la table périodique
 ```
 
 Graine figée partout : 20260907. Les verdicts reproduisent le procès-verbal du 07/09/2026
